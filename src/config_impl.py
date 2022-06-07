@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from typing import Dict
 
-from src.paddle_api.config import PaddleProjectConfig
+from config import PaddleProjectConfig
 
 
 class PaddleProjectConfigImpl(PaddleProjectConfig):

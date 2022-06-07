@@ -1,28 +1,9 @@
 #!/usr/bin/env python3
-import enum
 import sys
 from abc import ABC, abstractmethod
 from typing import List
 
-from project import PaddleProject, ExtendedPaddleProject
-
-
-@enum.unique
-class TaskDefaultGroups(enum.Enum):
-    LINT = "lint"
-    TEST = "test"
-    BUILD = "build"
-    APP = "application"
-
-
-@enum.unique
-class MessageType(enum.Enum):
-    DEBUG = 0
-    INFO = 1
-    WARN = 2
-    ERROR = 3
-    OUT = 4
-    ERR = 5
+from project import PaddleProject, ExtendedPaddleProject, TaskDefaultGroups
 
 
 class PaddleTask(ABC):
@@ -31,10 +12,10 @@ class PaddleTask(ABC):
     """
 
     @abstractmethod
-    def __init__(self, project: PaddleProject, identifier: str, group: str, deps: List[str]) -> None:
+    def __init__(self, project: PaddleProject, identifier: str, group: TaskDefaultGroups, deps: List[str]) -> None:
         self.__project = project
         self.__id = identifier
-        self.__group = group
+        self.__group = group.value
         self.__deps = deps
 
     @property
@@ -65,7 +46,15 @@ class PaddleTask(ABC):
         """
         return self.__deps
 
-    @abstractmethod
+    @property
+    def project(self):
+        """
+        Names of dependencies tasks that should be called before this task.
+
+        :return: list of strings represent names of dependencies
+        """
+        return self.__project
+
     async def initialize(self) -> None:
         """
         Performs initial initialization during import of the whole Paddle project.

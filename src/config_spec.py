@@ -1,97 +1,43 @@
 #!/usr/bin/env python3
+from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
 from typing import List, Dict
 
 
+@dataclass
 class SpecNode(ABC):
     """
     Base class of all configuration specification nodes types.
     """
-
-    @abstractmethod
-    def __init__(self, title: str, description: str) -> None:
-        self.__title = title
-        self.__description = description
-
-    @property
-    def title(self) -> str:
-        return self.__title
-
-    @title.setter
-    def title(self, value: str) -> None:
-        self.__title = value
-
-    @property
-    def description(self) -> str:
-        return self.__description
-
-    @description.setter
-    def description(self, value: str) -> None:
-        self.__description = value
+    title: str = None
+    description: str = None
 
 
+@dataclass
 class CompositeSpecNode(SpecNode):
-    def __init__(self, title: str, description: str) -> None:
-        SpecNode.__init__(self, title=title, description=description)
-        self.__required = list()
-        self.__properties = dict()
-        self.__valid_values = list()
-
-    @property
-    def required(self) -> List[str]:
-        return self.__required
-
-    @property
-    def properties(self) -> Dict[str, SpecNode]:
-        return self.__properties
-
-    @property
-    def valid_specs(self) -> List['CompositeSpecNode']:
-        return self.__valid_values
+    required: List[str] = field(default_factory=list)
+    properties: Dict[str, SpecNode] = field(default_factory=dict)
+    valid_specs: List['CompositeSpecNode'] = field(default_factory=list)
 
 
+@dataclass
 class ArraySpecNode(SpecNode):
-    def __init__(self, title: str, description: str) -> None:
-        SpecNode.__init__(self, title=title, description=description)
-        self.__items = None
-
-    @property
-    def items(self) -> SpecNode:
-        return self.__items
-
-    @items.setter
-    def items(self, value: SpecNode) -> None:
-        self.__items = value
+    items: SpecNode = None
 
 
+@dataclass
 class StringSpecNode(SpecNode):
-    def __init__(self, title: str, description: str):
-        SpecNode.__init__(self, title=title, description=description)
-        self.__valid_values = list()
-
-    @property
-    def valid_values(self) -> List[str]:
-        return self.__valid_values
+    valid_values: List[str] = field(default_factory=list)
 
 
+@dataclass
 class BooleanSpecNode(SpecNode):
-    def __init__(self, title: str, description: str):
-        SpecNode.__init__(self, title=title, description=description)
-        self.__valid_values = list()
-
-    @property
-    def valid_values(self) -> List[bool]:
-        return self.__valid_values
+    valid_values: List[bool] = field(default_factory=list)
 
 
+@dataclass
 class IntegerSpecNode(SpecNode):
-    def __init__(self, title: str, description: str):
-        SpecNode.__init__(self, title=title, description=description)
-        self.__valid_values = list()
-
-    @property
-    def valid_values(self) -> List[int]:
-        return self.__valid_values
+    valid_values: List[int] = field(default_factory=list)
 
 
 class PaddleProjectConfigSpec(ABC):
@@ -100,6 +46,11 @@ class PaddleProjectConfigSpec(ABC):
     Implementation of this class should provide API to change specification
     which used to validate Paddle project's configuration.
     """
+
+    @property
+    @abstractmethod
+    def root(self) -> CompositeSpecNode:
+        pass
 
     @abstractmethod
     def contains(self, key: str) -> bool:

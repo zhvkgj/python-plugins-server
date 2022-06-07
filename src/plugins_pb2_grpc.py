@@ -6,9 +6,9 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 import plugins_pb2 as plugins__pb2
 
 
-class PaddlePythonPluginsStub(object):
+class PluginsStub(object):
     """*
-    Paddle's plugins service (PaddlePyPS) definition.
+    Paddle's plugins service definition.
     """
 
     def __init__(self, channel):
@@ -18,45 +18,45 @@ class PaddlePythonPluginsStub(object):
             channel: A grpc.Channel.
         """
         self.InitializeProjectStub = channel.unary_unary(
-                '/io.paddle.plugin.interop.PaddlePythonPlugins/InitializeProjectStub',
+                '/io.paddle.plugin.interop.Plugins/InitializeProjectStub',
                 request_serializer=plugins__pb2.InitializeProjectRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.ImportPyModulePlugins = channel.unary_unary(
-                '/io.paddle.plugin.interop.PaddlePythonPlugins/ImportPyModulePlugins',
+                '/io.paddle.plugin.interop.Plugins/ImportPyModulePlugins',
                 request_serializer=plugins__pb2.ImportPyModulePluginsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.ImportPyPackagePlugins = channel.unary_unary(
-                '/io.paddle.plugin.interop.PaddlePythonPlugins/ImportPyPackagePlugins',
+                '/io.paddle.plugin.interop.Plugins/ImportPyPackagePlugins',
                 request_serializer=plugins__pb2.ImportPyPackagePluginsRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.Configure = channel.unary_unary(
-                '/io.paddle.plugin.interop.PaddlePythonPlugins/Configure',
+                '/io.paddle.plugin.interop.Plugins/Configure',
                 request_serializer=plugins__pb2.ProcessPluginRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.Tasks = channel.unary_unary(
-                '/io.paddle.plugin.interop.PaddlePythonPlugins/Tasks',
+                '/io.paddle.plugin.interop.Plugins/Tasks',
                 request_serializer=plugins__pb2.ProcessPluginRequest.SerializeToString,
                 response_deserializer=plugins__pb2.GetTasksResponse.FromString,
                 )
         self.Initialize = channel.unary_unary(
-                '/io.paddle.plugin.interop.PaddlePythonPlugins/Initialize',
+                '/io.paddle.plugin.interop.Plugins/Initialize',
                 request_serializer=plugins__pb2.ProcessTaskRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
         self.Act = channel.unary_unary(
-                '/io.paddle.plugin.interop.PaddlePythonPlugins/Act',
+                '/io.paddle.plugin.interop.Plugins/Act',
                 request_serializer=plugins__pb2.ProcessTaskRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
 
 
-class PaddlePythonPluginsServicer(object):
+class PluginsServicer(object):
     """*
-    Paddle's plugins service (PaddlePyPS) definition.
+    Paddle's plugins service definition.
     """
 
     def InitializeProjectStub(self, request, context):
@@ -116,7 +116,7 @@ class PaddlePythonPluginsServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_PaddlePythonPluginsServicer_to_server(servicer, server):
+def add_PluginsServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'InitializeProjectStub': grpc.unary_unary_rpc_method_handler(
                     servicer.InitializeProjectStub,
@@ -155,14 +155,14 @@ def add_PaddlePythonPluginsServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'io.paddle.plugin.interop.PaddlePythonPlugins', rpc_method_handlers)
+            'io.paddle.plugin.interop.Plugins', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class PaddlePythonPlugins(object):
+class Plugins(object):
     """*
-    Paddle's plugins service (PaddlePyPS) definition.
+    Paddle's plugins service definition.
     """
 
     @staticmethod
@@ -176,7 +176,7 @@ class PaddlePythonPlugins(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.PaddlePythonPlugins/InitializeProjectStub',
+        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.Plugins/InitializeProjectStub',
             plugins__pb2.InitializeProjectRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
@@ -193,7 +193,7 @@ class PaddlePythonPlugins(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.PaddlePythonPlugins/ImportPyModulePlugins',
+        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.Plugins/ImportPyModulePlugins',
             plugins__pb2.ImportPyModulePluginsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
@@ -210,7 +210,7 @@ class PaddlePythonPlugins(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.PaddlePythonPlugins/ImportPyPackagePlugins',
+        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.Plugins/ImportPyPackagePlugins',
             plugins__pb2.ImportPyPackagePluginsRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
@@ -227,7 +227,7 @@ class PaddlePythonPlugins(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.PaddlePythonPlugins/Configure',
+        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.Plugins/Configure',
             plugins__pb2.ProcessPluginRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
@@ -244,7 +244,7 @@ class PaddlePythonPlugins(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.PaddlePythonPlugins/Tasks',
+        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.Plugins/Tasks',
             plugins__pb2.ProcessPluginRequest.SerializeToString,
             plugins__pb2.GetTasksResponse.FromString,
             options, channel_credentials,
@@ -261,7 +261,7 @@ class PaddlePythonPlugins(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.PaddlePythonPlugins/Initialize',
+        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.Plugins/Initialize',
             plugins__pb2.ProcessTaskRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
@@ -278,7 +278,7 @@ class PaddlePythonPlugins(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.PaddlePythonPlugins/Act',
+        return grpc.experimental.unary_unary(request, target, '/io.paddle.plugin.interop.Plugins/Act',
             plugins__pb2.ProcessTaskRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,

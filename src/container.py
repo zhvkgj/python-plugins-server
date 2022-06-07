@@ -8,8 +8,9 @@ from typing import List, Iterable, Dict
 
 from grpc.aio import Channel
 
-from src.paddle_api.plugin import PaddlePlugin, PaddleTask
-from src.paddle_api_impl.project import AsyncPaddleApiClient, ExtendedPaddleProjectImpl
+from paddle_client import AsyncPaddleApiClient
+from plugin import PaddlePlugin, PaddleTask
+from project_impl import ExtendedPaddleProjectImpl
 
 
 @dataclass
@@ -80,7 +81,8 @@ class PaddlePluginsProvider:
 
     @staticmethod
     def parse_module_path(path: str) -> (str, str):
-        return path.removeprefix(os.path.sep).removesuffix(os.path.sep).replace(os.path.sep, ".").rsplit(".", 1)
+        real_path = Path(path)
+        return str(real_path.parent).lstrip(os.path.sep).rstrip(os.path.sep).replace(os.path.sep, "."), real_path.stem
 
     def import_plugins_from_module(self, module_info: PyModuleInfo):
         if module_info.with_repo_dir not in sys.path:
@@ -93,7 +95,7 @@ class PaddlePluginsProvider:
             self.__plugins[plugin_hash] = plugin
 
     def __getitem__(self, plugin_hash: str) -> PaddlePlugin:
-        return self.__plugins[plugin_hash].plugin
+        return self.__plugins[plugin_hash]
 
 
 class PaddleProjectContainer:
@@ -108,9 +110,9 @@ class PaddleProjectContainer:
     def import_module_plugins(self, plugins: Iterable[PyModuleInfo]) -> None:
         self.__plugins_provider.import_plugins_from_modules(plugins)
 
-    async def configure_plugin(self, plugin_name: str) -> None:
+    async def configure_plugin(self, plugin_hash: str) -> None:
         await self.__project.config_spec.load_config_spec()
-        await self.__plugins_provider[plugin_name].configure(self.__project)
+        await self.__plugins_provider[plugin_hash].configure(self.__project)
         await self.__project.config_spec.store_config_spec()
 
     async def plugin_tasks(self, plugin_hash: str) -> List[PaddleTask]:
@@ -125,4 +127,4 @@ class PaddleProjectContainer:
     def reload(self) -> None:
         self.__project.reload_config()
         self.__project.reset_config_spec()
-        self.__tasks = None
+        self.__tasks = dict()

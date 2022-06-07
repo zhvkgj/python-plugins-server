@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rplugins.proto\x12\x18io.paddle.plugin.interop\x1a\x1bgoogle/protobuf/empty.proto\"^\n\x18InitializeProjectRequest\x12\x11\n\tprojectId\x18\x01 \x01(\t\x12\x12\n\nworkingDir\x18\x02 \x01(\t\x12\x1b\n\x13pluginsSitePackages\x18\x03 \x01(\t\"j\n\x1cImportPyModulePluginsRequest\x12\x11\n\tprojectId\x18\x01 \x01(\t\x12\x37\n\x07modules\x18\x02 \x03(\x0b\x32&.io.paddle.plugin.interop.PyModuleInfo\"D\n\x0cPyModuleInfo\x12\x17\n\x0f\x61\x62soluteRepoDir\x18\x01 \x01(\t\x12\x1b\n\x13relativeDirToModule\x18\x02 \x01(\t\"m\n\x1dImportPyPackagePluginsRequest\x12\x11\n\tprojectId\x18\x01 \x01(\t\x12\x39\n\x08packages\x18\x02 \x03(\x0b\x32\'.io.paddle.plugin.interop.PyPackageInfo\"=\n\rPyPackageInfo\x12\x13\n\x0bpackageName\x18\x01 \x01(\t\x12\x17\n\x0f\x64istributionUrl\x18\x02 \x01(\t\"=\n\x14ProcessPluginRequest\x12\x11\n\tprojectId\x18\x01 \x01(\t\x12\x12\n\npluginHash\x18\x02 \x01(\t\"I\n\x10GetTasksResponse\x12\x35\n\ttasksInfo\x18\x01 \x03(\x0b\x32\".io.paddle.plugin.interop.TaskInfo\"6\n\x08TaskInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05group\x18\x02 \x01(\t\x12\x0f\n\x07\x64\x65psIds\x18\x03 \x03(\t\"7\n\x12ProcessTaskRequest\x12\x11\n\tprojectId\x18\x01 \x01(\t\x12\x0e\n\x06taskId\x18\x02 \x01(\t2\xb7\x05\n\x13PaddlePythonPlugins\x12\x65\n\x15InitializeProjectStub\x12\x32.io.paddle.plugin.interop.InitializeProjectRequest\x1a\x16.google.protobuf.Empty\"\x00\x12i\n\x15ImportPyModulePlugins\x12\x36.io.paddle.plugin.interop.ImportPyModulePluginsRequest\x1a\x16.google.protobuf.Empty\"\x00\x12k\n\x16ImportPyPackagePlugins\x12\x37.io.paddle.plugin.interop.ImportPyPackagePluginsRequest\x1a\x16.google.protobuf.Empty\"\x00\x12U\n\tConfigure\x12..io.paddle.plugin.interop.ProcessPluginRequest\x1a\x16.google.protobuf.Empty\"\x00\x12\x65\n\x05Tasks\x12..io.paddle.plugin.interop.ProcessPluginRequest\x1a*.io.paddle.plugin.interop.GetTasksResponse\"\x00\x12T\n\nInitialize\x12,.io.paddle.plugin.interop.ProcessTaskRequest\x1a\x16.google.protobuf.Empty\"\x00\x12M\n\x03\x41\x63t\x12,.io.paddle.plugin.interop.ProcessTaskRequest\x1a\x16.google.protobuf.Empty\"\x00\x42\x02P\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rplugins.proto\x12\x18io.paddle.plugin.interop\x1a\x1bgoogle/protobuf/empty.proto\"^\n\x18InitializeProjectRequest\x12\x11\n\tprojectId\x18\x01 \x01(\t\x12\x12\n\nworkingDir\x18\x02 \x01(\t\x12\x1b\n\x13pluginsSitePackages\x18\x03 \x01(\t\"j\n\x1cImportPyModulePluginsRequest\x12\x11\n\tprojectId\x18\x01 \x01(\t\x12\x37\n\x07modules\x18\x02 \x03(\x0b\x32&.io.paddle.plugin.interop.PyModuleInfo\"D\n\x0cPyModuleInfo\x12\x17\n\x0f\x61\x62soluteRepoDir\x18\x01 \x01(\t\x12\x1b\n\x13relativeDirToModule\x18\x02 \x01(\t\"m\n\x1dImportPyPackagePluginsRequest\x12\x11\n\tprojectId\x18\x01 \x01(\t\x12\x39\n\x08packages\x18\x02 \x03(\x0b\x32\'.io.paddle.plugin.interop.PyPackageInfo\"=\n\rPyPackageInfo\x12\x13\n\x0bpackageName\x18\x01 \x01(\t\x12\x17\n\x0f\x64istributionUrl\x18\x02 \x01(\t\"=\n\x14ProcessPluginRequest\x12\x11\n\tprojectId\x18\x01 \x01(\t\x12\x12\n\npluginHash\x18\x02 \x01(\t\"I\n\x10GetTasksResponse\x12\x35\n\ttasksInfo\x18\x01 \x03(\x0b\x32\".io.paddle.plugin.interop.TaskInfo\"6\n\x08TaskInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05group\x18\x02 \x01(\t\x12\x0f\n\x07\x64\x65psIds\x18\x03 \x03(\t\"7\n\x12ProcessTaskRequest\x12\x11\n\tprojectId\x18\x01 \x01(\t\x12\x0e\n\x06taskId\x18\x02 \x01(\t2\xab\x05\n\x07Plugins\x12\x65\n\x15InitializeProjectStub\x12\x32.io.paddle.plugin.interop.InitializeProjectRequest\x1a\x16.google.protobuf.Empty\"\x00\x12i\n\x15ImportPyModulePlugins\x12\x36.io.paddle.plugin.interop.ImportPyModulePluginsRequest\x1a\x16.google.protobuf.Empty\"\x00\x12k\n\x16ImportPyPackagePlugins\x12\x37.io.paddle.plugin.interop.ImportPyPackagePluginsRequest\x1a\x16.google.protobuf.Empty\"\x00\x12U\n\tConfigure\x12..io.paddle.plugin.interop.ProcessPluginRequest\x1a\x16.google.protobuf.Empty\"\x00\x12\x65\n\x05Tasks\x12..io.paddle.plugin.interop.ProcessPluginRequest\x1a*.io.paddle.plugin.interop.GetTasksResponse\"\x00\x12T\n\nInitialize\x12,.io.paddle.plugin.interop.ProcessTaskRequest\x1a\x16.google.protobuf.Empty\"\x00\x12M\n\x03\x41\x63t\x12,.io.paddle.plugin.interop.ProcessTaskRequest\x1a\x16.google.protobuf.Empty\"\x00\x42\x02P\x01\x62\x06proto3')
 
 
 
@@ -91,7 +91,7 @@ ProcessTaskRequest = _reflection.GeneratedProtocolMessageType('ProcessTaskReques
   })
 _sym_db.RegisterMessage(ProcessTaskRequest)
 
-_PADDLEPYTHONPLUGINS = DESCRIPTOR.services_by_name['PaddlePythonPlugins']
+_PLUGINS = DESCRIPTOR.services_by_name['Plugins']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
@@ -114,6 +114,6 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _TASKINFO._serialized_end=712
   _PROCESSTASKREQUEST._serialized_start=714
   _PROCESSTASKREQUEST._serialized_end=769
-  _PADDLEPYTHONPLUGINS._serialized_start=772
-  _PADDLEPYTHONPLUGINS._serialized_end=1467
+  _PLUGINS._serialized_start=772
+  _PLUGINS._serialized_end=1455
 # @@protoc_insertion_point(module_scope)

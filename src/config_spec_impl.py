@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from src.paddle_api.config_spec import PaddleProjectConfigSpec, SpecNode, CompositeSpecNode
-from src.paddle_api_impl.project import AsyncPaddleApiClient
+from config_spec import PaddleProjectConfigSpec, SpecNode, CompositeSpecNode
+from paddle_client import AsyncPaddleApiClient
 
 
 class PaddleProjectConfigSpecImpl(PaddleProjectConfigSpec):
@@ -8,6 +8,11 @@ class PaddleProjectConfigSpecImpl(PaddleProjectConfigSpec):
         self.__project_id = project_id
         self.__grpc_client = grpc_client
         self.__root = None
+
+    @property
+    def root(self) -> CompositeSpecNode:
+        assert self.__root is not None
+        return self.__root
 
     def contains(self, key: str) -> bool:
         return self.__root is not None and self.__root.get(key) is not None
